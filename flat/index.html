@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="text-scale" content="scale" />
+    <title>Imagine</title>
+    <meta
+      name="description"
+      content="Type anything and watch it paint. A 512 × 512 image in about half a second, made on your own laptop in the browser."
+    />
+    <link rel="icon" href="favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" src="js/app.js"></script>
+  </head>
+  <body>
+    <main>
+      <header>
+        <a
+          class="pill strong"
+          href="https://huggingface.co/lox9973/MiniT2I-B-16-MF-compact"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <span aria-hidden="true">🤗</span> Imagine
+        </a>
+        <div class="about-wrap" id="about-wrap">
+          <button
+            class="pill icon"
+            id="about-button"
+            aria-label="About"
+            aria-expanded="false"
+            aria-controls="about"
+          >
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8" />
+              <path
+                d="M12 11v6M12 7.5v.01"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </button>
+          <!-- A receipt for the current picture. -->
+          <div class="about" id="about" hidden>
+            <img id="about-image" alt="" />
+            <dl>
+              <div><dt>Picture</dt><dd>512 × 512</dd></div>
+              <div><dt>Steps</dt><dd>4</dd></div>
+              <div><dt>Time</dt><dd id="about-time">—</dd></div>
+              <div><dt>Painted on</dt><dd>your GPU</dd></div>
+              <div><dt>Uploaded</dt><dd>nothing</dd></div>
+              <div class="total"><dt>Cost</dt><dd>$0.00</dd></div>
+            </dl>
+            <p class="thanks">Made possible by</p>
+            <a href="https://huggingface.co/MiniT2I/MiniT2I-B-16-MF-jax" target="_blank" rel="noreferrer">
+              <span>MiniT2I</span><small>Wang et al. · Kaiming He</small>
+            </a>
+            <a href="https://huggingface.co/lox9973/MiniT2I-B-16-MF-compact" target="_blank" rel="noreferrer">
+              <span>Compact model</span><small>lox9973</small>
+            </a>
+            <a
+              href="https://huggingface.co/cfahlgren1/MiniT2I-B-16-MF-compact-webgpu-int8"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span>WebGPU weights</span><small>ONNX · int8</small>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <section class="stage">
+        <div class="words">
+          <div class="sentence xl" id="sentence">
+            <!-- The mirror shows the text in color; the transparent textarea on top takes the typing. -->
+            <div class="mirror" id="mirror" aria-hidden="true"></div>
+            <textarea
+              id="prompt"
+              maxlength="600"
+              rows="1"
+              aria-label="Describe a picture"
+              autocomplete="off"
+              spellcheck="false"
+            ></textarea>
+          </div>
+
+          <div class="film" id="film" aria-label="Every pause, painted"></div>
+
+          <p class="hint">Keep typing. Every pause repaints the picture. Press Enter to start a new one.</p>
+
+          <div class="suggestions" id="suggestions"></div>
+        </div>
+
+        <figure class="hero" id="hero"></figure>
+      </section>
+    </main>
+  </body>
+</html>
